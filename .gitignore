@@ -1,0 +1,5 @@
+/.idea
+*.pyc
+
+# information to help in development
+/support_info
