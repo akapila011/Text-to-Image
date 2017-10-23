@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
 from os import path
+import sys
 import argparse
+import logging
 
 from PIL import Image
 
-from TextToImage.utilities import check_filename
+try:
+    from TextToImage.utilities import check_filename
+except ModuleNotFoundError:
+    curr_file_dir_path = path.dirname(path.realpath(__file__))
+    parent_dir = path.dirname(curr_file_dir_path)
+    sys.path.insert(0, parent_dir)
+    from TextToImage.utilities import check_filename
 
 
 def decode(image_path):
@@ -45,4 +53,16 @@ def decode_to_file(image_path, file_path):
 
 
 if __name__ == "__main__":
-    pass
+    logging.basicConfig(level=logging.INFO)
+    parser = argparse.ArgumentParser(description="Decode text from an image and output to console to a text file.")
+    parser.add_argument("image_path", action="store", help="Filename/path for the input image with the encoded text.",
+                        type=str)
+    parser.add_argument("-f", "--file", action="store", help="Path to text file where decoded text should be stored.",
+                        type=str)
+    args = parser.parse_args()
+
+    if args.file is None:
+        print(decode(args.image_path))
+    else:
+        output_file = decode_to_file(args.image_path, args.file)
+        logging.info("File '{0}' has been created with the decoded text".format(output_file))

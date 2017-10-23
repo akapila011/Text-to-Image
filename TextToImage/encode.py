@@ -1,12 +1,22 @@
 #!/usr/bin/env python3
 from os import path
+import sys
 import argparse
+import logging
 
 from PIL import Image
 
-from TextToImage.utilities import check_filename
-from TextToImage.utilities import convert_char_to_int
-from TextToImage.utilities import get_image_size
+try:
+    from TextToImage.utilities import check_filename
+    from TextToImage.utilities import convert_char_to_int
+    from TextToImage.utilities import get_image_size
+except ModuleNotFoundError:
+    curr_file_dir_path = path.dirname(path.realpath(__file__))
+    parent_dir = path.dirname(curr_file_dir_path)
+    sys.path.insert(0, parent_dir)
+    from TextToImage.utilities import check_filename
+    from TextToImage.utilities import convert_char_to_int
+    from TextToImage.utilities import get_image_size
 
 
 def encode(text, image_path, limit=256):
@@ -63,4 +73,28 @@ def encode_file(file_path, image_path, limit=256):
 
 
 if __name__ == "__main__":
-    pass
+    logging.basicConfig(level=logging.INFO)
+    parser = argparse.ArgumentParser(description="Encode text (provided or from a text file) to an image.")
+    parser.add_argument("image_path", action="store", help="Filename/path for the output image with the encoded text.",
+                        type=str)
+    text_or_file_group = parser.add_mutually_exclusive_group()
+    text_or_file_group.add_argument("-t", "--text", action="store", help="Text to be encoded.", type=str)
+    text_or_file_group.add_argument("-f", "--file", action="store", help="Path to plain text file to be encoded.",
+                                    type=str)
+    parser.add_argument("-l", "--limit", action="store", help="Decimal value limit for pixel value (1 to max)",
+                        type=int)
+    args = parser.parse_args()
+    if args.file is None and args.text is None:
+        logging.error("You must either provide text to be encoded or a path to a text file with text to be encoded.")
+        sys.exit(1)
+
+    pixel_value_limit = 256
+    if args.limit is not None:
+        pixel_value_limit = args.limit
+
+    output_file = ""  # path to created image file
+    if args.text is not None:
+        output_file = encode(args.text, args.image_path, limit=pixel_value_limit)
+    if args.file is not None:
+        output_file = encode_file(args.file, args.image_path, limit=pixel_value_limit)
+    logging.info("Image '{0}' has been created".format(output_file))
