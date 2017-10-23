@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-
-from os import path
 from functools import reduce
 
 
@@ -9,7 +7,7 @@ def check_filename(filepath, extension=".txt"):
     Take a path to a file and ensure the filename has the right extension, else add the extension.
     :param str filepath: The path to the file.
     :param str extension: Extension for the given file. If wrong extension in filepath then raise error.
-    String must start with '.'.
+    Extension must start with '.'.
     :return str: The filepath with the correct extension.
     """
     if extension[0] != ".":

@@ -1,20 +1,65 @@
 #!/usr/bin/env python3
-
+from os import path
 import argparse
 
 from PIL import Image
 
-from .utilities import check_filename
-from .utilities import convert_char_to_int
-from .utilities import  get_image_size
+from TextToImage.utilities import check_filename
+from TextToImage.utilities import convert_char_to_int
+from TextToImage.utilities import get_image_size
 
 
-def encode(text, image_path):
-    pass
+def encode(text, image_path, limit=256):
+    """
+    Take a string of text and encode it into an 8-bit grayscale image.
+    :param str text: Text may be ASCII or UTF-8 but limit value must be changed accordingly.
+    :param str image_path: Path to image file. Should have a '.png' extension or no extension
+    :param int limit: The value limit for each pixel. 256 = 8 bit meaning all character encoding schemes using 8 or
+    fewer bit can be encoded. If limit is 65536 then character encoding schemes using 16 bits or less can be applied
+    e.g. UTF-8. When a character is used from a character set greater than the limit, the character value will be
+    divided by the limit value. e.g. limit=256 character=Ĭ (value=300), resulting value will be 44. For values equal to
+    the limit, the resulting value will be 1 to avoid NULL within the encoded data. Limit is the number of possible
+    values in decimal from 1 to a max value. (default=256 i.e. 8 bit pixels/ 1- 256 means 255 possible values)
+    :return (str):  The path to the image produced.
+    """
+    if type(text) is not str:
+        raise TypeError("Parameter 'text' must be a string.")
+    text_length = len(text)
+    size = get_image_size(text_length)
+    result_path = check_filename(image_path, extension=".png")
+
+    img = Image.new("L", size)  # grayscale, blank black image
+    ind = 0
+    for row in range(0, size[0]):
+        for col in range(0, size[1]):
+            if ind < text_length:  # only change pixel value for length of text
+                pixel_value = convert_char_to_int(text[ind], limit=limit)
+                img.putpixel((row, col), pixel_value)
+                ind += 1
+            else:  # end of text, leave remaining pixel(s) black to indicate null
+                break
+    img.save(result_path)
+    return result_path
 
 
-def encode_file(file_path, image_path):
-    pass
+def encode_file(file_path, image_path, limit=256):
+    """
+    Take a plain text file and encode it to a grayscale image.
+    :param str file_path: Path a valid plain text file with text to be encoded. Must have a .txt extension.
+    :param str image_path: Path to image to be created. Will be a png image.
+    :param int limit: The value limit for each pixel. A value of 256 means 8 bit pixels and any character encoding
+    scheme using fewer bits can be used. Characters with a value greater than limit will be divided by limit while
+    characters equal to limit will become 1. See encode() for more information. (default = 256 i.e. 8 bit pixels).
+    :return str: Path to image produced
+    """
+    if not path.isfile(file_path):
+        raise FileExistsError("The file {0} does not exist. Cannot encode a non-existent text file.".format(file_path))
+    if file_path[-4:].lower() != ".txt":
+        raise TypeError("File {0} must be a plain text file with a '.txt' file extension".format(file_path))
+    with open(file_path, "r") as f:
+        text = f.read()
+
+    return encode(text, image_path, limit=limit)
 
 
 if __name__ == "__main__":
