@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import unittest
-from unittest.mock import  mock_open
 
 from text_to_image import encode
 

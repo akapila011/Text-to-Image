@@ -68,7 +68,7 @@ def _factors(number):
     :return [int,int]: List of factors of parameter 'number' sorted in ascending order.
     """
     if number < 0:
-        raise ValueError("Parameter 'number' must be a positive value")
+        raise ValueError("Parameter 'number' must be a positive value.")
     return sorted(set(reduce(list.__add__,
                              ([i, number // i] for i in range(1, int(number ** 0.5) + 1) if number % i == 0))))
 

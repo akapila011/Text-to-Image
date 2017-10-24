@@ -7,7 +7,7 @@ from os import path
 here = path.abspath(path.dirname(__file__))
 
 
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
+with open(path.join(here, 'README.txt'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
@@ -22,9 +22,12 @@ setup(
 
     packages=["text_to_image"],
     classifiers=["Development Status :: 3 - Alpha",
-                 "Intended Audience :: Developers :: End Users",
-                 "Topic :: Graphics :: Encoding :: Decoding :: Stenography",
-                 "Programming Language :: Python :: 3"],
+                 "Intended Audience :: Developers :: End Users/Desktop",
+                 "Topic :: Scientific/Engineering :: Visualization",
+                 "Topic :: Security :: Cryptography",
+                 "Topic :: Multimedia :: Graphics",
+                 "Programming Language :: Python :: 3",
+                 "Natural Language :: English"],
     keywords="Graphics Encoding Decoding Stenography",
     install_requires=["Pillow"]
 )

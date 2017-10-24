@@ -6,17 +6,10 @@ import logging
 
 from PIL import Image
 
-try:
-    from text_to_image.utilities import check_filename
-    from text_to_image.utilities import convert_char_to_int
-    from text_to_image.utilities import get_image_size
-except ModuleNotFoundError:
-    curr_file_dir_path = path.dirname(path.realpath(__file__))
-    parent_dir = path.dirname(curr_file_dir_path)
-    sys.path.insert(0, parent_dir)
-    from text_to_image.utilities import check_filename
-    from text_to_image.utilities import convert_char_to_int
-    from text_to_image.utilities import get_image_size
+
+from text_to_image.utilities import check_filename
+from text_to_image.utilities import convert_char_to_int
+from text_to_image.utilities import get_image_size
 
 
 def encode(text, image_path, limit=256):
@@ -30,7 +23,7 @@ def encode(text, image_path, limit=256):
     divided by the limit value. e.g. limit=256 character=Ĭ (value=300), resulting value will be 44. For values equal to
     the limit, the resulting value will be 1 to avoid NULL within the encoded data. Limit is the number of possible
     values in decimal from 1 to a max value. (default=256 i.e. 8 bit pixels/ 1- 256 means 255 possible values)
-    :return (str):  The path to the image produced.
+    :return str:  The path to the image produced.
     """
     if type(text) is not str:
         raise TypeError("Parameter 'text' must be a string.")

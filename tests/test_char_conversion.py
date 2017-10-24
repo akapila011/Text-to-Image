@@ -8,7 +8,7 @@ class ConvertCharToIntTestCase(unittest.TestCase):
 
     def test_letters_to_8bit_value(self):
         letters = sorted(("a", "b", "c", "i", "h", "o", "v", "x", "y", "q",
-                          "A", "B", "C", "D", "I", "P", "Q", "R", "X", "Z", "T", "E"))
+                          "A", "B", "C", "D", "I", "P", "Q", "R", "X", "Z", "T", "E", "F"))
         for letter in letters:
             self.assertEqual(ord(letter), convert_char_to_int(letter, limit=256))
 

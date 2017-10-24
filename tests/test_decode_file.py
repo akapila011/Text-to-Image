@@ -11,7 +11,7 @@ class DecodeToFileTestCase(unittest.TestCase):
         self.assertRaises(FileExistsError, decode_to_file, "nonexistent_image.png", "text_nonexistent_out_file.txt")
 
     def test_input_image_wrong_extension(self):
-        pass  # TODO: mocking input image
+        pass  # TODO: mocking input image to be encoded
 
 
 if __name__ == "__main__":
