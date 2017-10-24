@@ -2,7 +2,7 @@
 import unittest
 from unittest.mock import  mock_open
 
-from TextToImage import encode
+from text_to_image import encode
 
 
 class EncodeTestCase(unittest.TestCase):

@@ -2,7 +2,7 @@
 
 import unittest
 
-from TextToImage.utilities import get_image_size
+from text_to_image.utilities import get_image_size
 
 
 class GetImageSizeTestCase(unittest.TestCase):

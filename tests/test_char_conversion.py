@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import unittest
 
-from TextToImage.utilities import convert_char_to_int
+from text_to_image.utilities import convert_char_to_int
 
 
 class ConvertCharToIntTestCase(unittest.TestCase):

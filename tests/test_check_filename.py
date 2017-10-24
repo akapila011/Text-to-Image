@@ -2,7 +2,7 @@
 
 import unittest
 
-from TextToImage.utilities import check_filename
+from text_to_image.utilities import check_filename
 
 
 class CheckFilenameTestCase(unittest.TestCase):

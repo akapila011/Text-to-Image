@@ -7,12 +7,12 @@ import logging
 from PIL import Image
 
 try:
-    from TextToImage.utilities import check_filename
+    from text_to_image.utilities import check_filename
 except ModuleNotFoundError:
     curr_file_dir_path = path.dirname(path.realpath(__file__))
     parent_dir = path.dirname(curr_file_dir_path)
     sys.path.insert(0, parent_dir)
-    from TextToImage.utilities import check_filename
+    from text_to_image.utilities import check_filename
 
 
 def decode(image_path):

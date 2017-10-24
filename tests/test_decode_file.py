@@ -2,7 +2,7 @@
 import unittest
 from unittest.mock import  mock_open
 
-from TextToImage import decode_to_file
+from text_to_image import decode_to_file
 
 
 class DecodeToFileTestCase(unittest.TestCase):

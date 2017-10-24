@@ -3,7 +3,7 @@
 import unittest
 from unittest.mock import  mock_open
 
-from TextToImage import encode_file
+from text_to_image import encode_file
 
 
 class EncodeFileTestCase(unittest.TestCase):

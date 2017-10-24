@@ -7,16 +7,16 @@ import logging
 from PIL import Image
 
 try:
-    from TextToImage.utilities import check_filename
-    from TextToImage.utilities import convert_char_to_int
-    from TextToImage.utilities import get_image_size
+    from text_to_image.utilities import check_filename
+    from text_to_image.utilities import convert_char_to_int
+    from text_to_image.utilities import get_image_size
 except ModuleNotFoundError:
     curr_file_dir_path = path.dirname(path.realpath(__file__))
     parent_dir = path.dirname(curr_file_dir_path)
     sys.path.insert(0, parent_dir)
-    from TextToImage.utilities import check_filename
-    from TextToImage.utilities import convert_char_to_int
-    from TextToImage.utilities import get_image_size
+    from text_to_image.utilities import check_filename
+    from text_to_image.utilities import convert_char_to_int
+    from text_to_image.utilities import get_image_size
 
 
 def encode(text, image_path, limit=256):
