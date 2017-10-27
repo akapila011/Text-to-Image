@@ -8,9 +8,10 @@ With this tool you can encode text or plain text files to a grayscale image to b
 
 Images use a PNG file extension. The image size will be automatically be set depending on the text length to be encoded.
 
-Text should use a character encoding scheme using 8 bits or less until addditional functionality is added to support UTF-8 (16 bit). If a characte's decimal value is greater than the limit (see below) the it will be divided by the limit and the new value used. When the character value equals the limit value the new value will be 1.
+Text should use a character encoding scheme using 8 bits or less until additional functionality is added to support UTF-8 (16 bit). If a character's decimal value is greater than the limit (see below) the it will be divided by the limit and the new value used. When the character value equals the limit value the new value will be 1.
 
-The limit value passed using either command line argument -l(--limit) specifies the decimale value limit for pixel values starting from 1. The default is 256 allowing for numbers from 1 to 256 (i.e. 8 bit pixels).
+The limit value passed using either command line argument -l(--limit) specifies the decimal value limit for pixel values starting from 1. The default is 256 allowing for numbers from 1 to 255 (i.e. 8 bit pixels).
+If the limit value is greater than 8 bits then the value will still be wrapped around since the output image is grayscale.
 
 ##### Requirements
 
@@ -26,7 +27,6 @@ You can install text_to_image using pip or setup.py
 ```bash
 $> pip3 install text_to_image
 ```
-*Note: Package is yet to be uploaded to PyPi.*
 
 * Using setup.py. First navigative to the root directory where setup.py is located then run
 ```bash
