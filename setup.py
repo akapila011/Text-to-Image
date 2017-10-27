@@ -12,7 +12,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name="text_to_image",
-    version="0.0.3",
+    version="0.0.5",
     description="Convert your text to a grayscale image and back.",
     long_description=long_description,
     license="MIT",

@@ -69,19 +69,18 @@ file or import and use the relevant functions.
        $> python3 decode.py -f my-text-file.txt image.png  # decodes image.png to the given text file
        $> python3 decode.py --help  # for more information on arguments
 
--  Importing \`\`\`python import text\_to\_image
+-  Importing
 
-encoded\_image\_path = text\_to\_image.encode(“Hello World!”,
-“image.png”) encoded\_image\_path =
-text\_to\_image.encode\_file(“input\_text\_file.txt”,
-“output\_image.png”)
+   .. code:: python
 
-decoded\_text = text\_to\_image.decode(“encoded\_image.png”)
-decoded\_file\_path =
-text\_to\_image.decode\_to\_file(“encoded\_image.png”,
-“output\_text\_file.txt”)
+       import text_to_image
 
-\`\`\`
+	   encoded_image_path = text_to_image.encode("Hello World!", "image.png")
+	   encoded_image_path = text_to_image.encode_file("input_text_file.txt", "output_image.png")
+
+	   decoded_text = text_to_image.decode("encoded_image.png")
+	   decoded_file_path = text_to_image.decode_to_file("encoded_image.png", "output_text_file.txt")
+
 
 Tests
 ~~~~~
