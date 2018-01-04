@@ -79,7 +79,3 @@ Another image example:
 
 * Add custom image sizes.
 * Expand pixel value to allow for UTF-8 characters.
-
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/F7562BGJ3YiAu5CBEEerdT66/akapila011/Text-to-Image'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/F7562BGJ3YiAu5CBEEerdT66/akapila011/Text-to-Image.svg' />
-</a>
